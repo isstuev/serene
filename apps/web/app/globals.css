@@ -1,6 +1,60 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* ── Custom calm palette ─────────────────────────────── */
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-200: #c7d2fe;
+  --color-indigo-300: #a5b4fc;
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  --color-indigo-800: #3730a3;
+  --color-indigo-900: #312e81;
+  --color-indigo-950: #1e1b4b;
+
+  --color-sage-50: #f8faf8;
+  --color-sage-100: #eef2ee;
+  --color-sage-200: #d9e4d9;
+  --color-sage-300: #b8cdb8;
+  --color-sage-400: #8fab8f;
+  --color-sage-500: #6a8f6a;
+  --color-sage-600: #517551;
+  --color-sage-700: #425f42;
+  --color-sage-800: #374d37;
+  --color-sage-900: #2e402e;
+
+  --color-warm-50: #fdfcfb;
+  --color-warm-100: #faf8f5;
+  --color-warm-200: #f5f0ea;
+  --color-warm-300: #ede4d8;
+  --color-warm-400: #e0d0bc;
+  --color-warm-500: #cdb99a;
+
+  /* ── shadcn CSS-var bridges ──────────────────────────── */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius: 0.5rem;
+}
 
 @layer base {
   :root {
@@ -23,7 +77,6 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 238.7 83.5% 66.7%;
-    --radius: 0.5rem;
   }
 
   .dark {

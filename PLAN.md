@@ -15,10 +15,10 @@
 - [x] `README.md` skeleton
 
 ## Phase 2 — Landing Page & Shell
-- [ ] Landing page (`/`) — hero, feature highlights, CTA
-- [ ] Sign-in page (`/auth/signin`)
-- [ ] Sign-up page (`/auth/signup`)
-- [ ] Authenticated shell layout — nav/sidebar, user avatar, sign-out
+- [x] Landing page (`/`) — hero, feature highlights, CTA
+- [x] Sign-in page (`/auth/signin`)
+- [x] Sign-up page (`/auth/signup`)
+- [x] Authenticated shell layout — nav/sidebar, user avatar, sign-out
 
 ## Phase 3 — Journal CRUD
 - [ ] `GET /api/entries` — list with date grouping (today / yesterday / last week / older)
