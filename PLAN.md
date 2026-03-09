@@ -43,13 +43,13 @@
 - [x] Vibe check triggered on entry save; result persisted to `entries.vibe_check`
 
 ## Phase 5 — Insights
-- [ ] Aggregation query — mood counts per day for date range
-- [ ] Aggregation query — tag frequency for date range
-- [ ] Streak counter — consecutive days with ≥1 entry
-- [ ] `/insights` page with date range picker
-- [ ] Weekly mood bar chart (Recharts)
-- [ ] Tag frequency chart (Recharts)
-- [ ] Streak display
+- [x] Aggregation query — mood counts per day for date range
+- [x] Aggregation query — tag frequency for date range
+- [x] Streak counter — consecutive days with ≥1 entry
+- [x] `/insights` page with date range picker
+- [x] Weekly mood bar chart (Recharts)
+- [x] Tag frequency chart (Recharts)
+- [x] Streak display
 
 ## Phase 6 — Polish & Ship
 - [ ] Mobile-first responsive audit
