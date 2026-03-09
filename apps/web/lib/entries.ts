@@ -1,6 +1,6 @@
 import { db } from "@/lib/db"
 import { entries } from "@/drizzle/schema"
-import { eq, and, desc } from "drizzle-orm"
+import { eq, and, desc, gte, lte } from "drizzle-orm"
 import type { Mood, Tag } from "@/lib/types"
 
 export async function createEntry(data: {
@@ -13,11 +13,17 @@ export async function createEntry(data: {
   return entry
 }
 
-export async function getEntries(userId: string) {
+export async function getEntries(
+  userId: string,
+  opts?: { from?: Date; to?: Date }
+) {
+  const conditions = [eq(entries.userId, userId)]
+  if (opts?.from) conditions.push(gte(entries.createdAt, opts.from))
+  if (opts?.to) conditions.push(lte(entries.createdAt, opts.to))
   return db
     .select()
     .from(entries)
-    .where(eq(entries.userId, userId))
+    .where(and(...conditions))
     .orderBy(desc(entries.createdAt))
 }
 

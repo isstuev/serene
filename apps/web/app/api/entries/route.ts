@@ -28,13 +28,19 @@ const createEntrySchema = z.object({
   note: z.string().min(1),
 })
 
-export async function GET() {
+export async function GET(req: Request) {
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const entries = await getEntries(session.user.id)
+  const { searchParams } = new URL(req.url)
+  const fromParam = searchParams.get("from")
+  const toParam = searchParams.get("to")
+  const from = fromParam ? new Date(fromParam) : undefined
+  const to = toParam ? new Date(toParam) : undefined
+
+  const entries = await getEntries(session.user.id, { from, to })
   return NextResponse.json(entries)
 }
 
