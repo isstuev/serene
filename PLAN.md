@@ -36,11 +36,11 @@
 - [x] Delete confirmation modal
 
 ## Phase 4 — AI Vibe Check
-- [ ] `POST /api/vibe` — streaming endpoint (Vercel AI SDK `streamText` + Claude Haiku)
-- [ ] System prompt configured as non-clinical companion
-- [ ] Safety guardrails: short input, gibberish detection, trigger-word crisis disclaimer
-- [ ] `VibeCheckPanel` component — streams tokens in real-time
-- [ ] Vibe check triggered on entry save; result persisted to `entries.vibe_check`
+- [x] `POST /api/vibe` — streaming endpoint (Vercel AI SDK `streamText` + Claude Haiku)
+- [x] System prompt configured as non-clinical companion
+- [x] Safety guardrails: short input, gibberish detection, trigger-word crisis disclaimer
+- [x] `VibeCheckPanel` component — streams tokens in real-time
+- [x] Vibe check triggered on entry save; result persisted to `entries.vibe_check`
 
 ## Phase 5 — Insights
 - [ ] Aggregation query — mood counts per day for date range

@@ -46,8 +46,15 @@ export default function SignUpPage() {
     });
 
     if (!res.ok) {
-      const body = await res.json();
-      setServerError(body.error ?? "Something went wrong.");
+      const text = await res.text();
+      let message = "Something went wrong.";
+      try {
+        const body = JSON.parse(text);
+        message = body.error ?? message;
+      } catch {
+        // non-JSON error response; use generic message
+      }
+      setServerError(message);
       return;
     }
 

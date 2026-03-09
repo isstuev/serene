@@ -26,14 +26,12 @@ export default function JournalPage() {
   }, [fetchEntries])
 
   function handleSave(savedEntry: Entry) {
-    if (editingEntry) {
-      setEntries((prev) =>
-        prev.map((e) => (e.id === savedEntry.id ? savedEntry : e))
-      )
-      setEditingEntry(null)
-    } else {
-      setEntries((prev) => [savedEntry, ...prev])
-    }
+    setEntries((prev) => {
+      const exists = prev.some((e) => e.id === savedEntry.id)
+      if (exists) return prev.map((e) => (e.id === savedEntry.id ? savedEntry : e))
+      return [savedEntry, ...prev]
+    })
+    if (editingEntry?.id === savedEntry.id) setEditingEntry(null)
   }
 
   function handleEdit(entry: Entry) {
