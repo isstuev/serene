@@ -40,7 +40,7 @@ npm workspaces. Single app at `apps/web/` (Next.js 15, App Router, TypeScript st
 Middleware (`apps/web/middleware.ts`) re-exports NextAuth's `auth` to protect all `/(app)/*` routes.
 
 ### Auth
-NextAuth v5 beta (`next-auth@^5.0.0-beta.25`) with `@auth/drizzle-adapter`. Config lives in `lib/auth.ts` which exports `{ handlers, auth, signIn, signOut }`. Two providers: Credentials (bcryptjs, salt 12) + Google OAuth. Sessions stored in DB.
+NextAuth v5 beta (`next-auth@^5.0.0-beta.25`) with `@auth/drizzle-adapter`. Config lives in `lib/auth.ts` which exports `{ handlers, auth, signIn, signOut }`. Two providers: Credentials (bcryptjs, salt 12) + Google OAuth. **JWT session strategy** (`strategy: "jwt"`) — sessions are stateless JWTs; the DrizzleAdapter is used for user/account/verificationToken persistence only (the `sessions` table is not written to).
 
 ### Database
 Drizzle ORM + postgres.js + PostgreSQL 16. Schema at `apps/web/drizzle/schema.ts`. All entry queries must scope by `user_id` (ownership enforcement). NextAuth adapter manages `users`, `accounts`, `sessions`, `verificationTokens` tables. App table: `entries` (mood, tags text[], note, vibe_check, timestamps).
