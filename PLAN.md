@@ -1,18 +1,18 @@
 # Serene – Implementation Plan
 
 ## Phase 1 — Scaffold & Auth
-- [ ] Init npm workspaces monorepo
-- [ ] Create `apps/web` with Next.js 15 + TypeScript
-- [ ] Configure Tailwind CSS + shadcn/ui
-- [ ] Drizzle schema (`users`, `accounts`, `sessions`, `verification_tokens`, `entries`)
-- [ ] Initial Drizzle migration
-- [ ] NextAuth v5 — Credentials provider (email/password with bcryptjs)
-- [ ] NextAuth v5 — Google OAuth provider
-- [ ] Middleware to protect `/(app)/*` routes
-- [ ] `Dockerfile` (multi-stage, standalone output)
-- [ ] `docker-compose.yaml` (web + postgres, healthcheck, auto-migrate on start)
-- [ ] `.env.example`
-- [ ] `README.md` skeleton
+- [x] Init npm workspaces monorepo
+- [x] Create `apps/web` with Next.js 15 + TypeScript
+- [x] Configure Tailwind CSS + shadcn/ui
+- [x] Drizzle schema (`users`, `accounts`, `sessions`, `verification_tokens`, `entries`)
+- [x] Initial Drizzle migration
+- [x] NextAuth v5 — Credentials provider (email/password with bcryptjs)
+- [x] NextAuth v5 — Google OAuth provider
+- [x] Middleware to protect `/(app)/*` routes
+- [x] `Dockerfile` (multi-stage, standalone output)
+- [x] `docker-compose.yaml` (web + postgres, healthcheck, auto-migrate on start)
+- [x] `.env.example`
+- [x] `README.md` skeleton
 
 ## Phase 2 — Landing Page & Shell
 - [ ] Landing page (`/`) — hero, feature highlights, CTA

@@ -4,6 +4,17 @@ COPY package.json ./
 COPY apps/web/package.json ./apps/web/
 RUN npm ci --workspace=apps/web
 
+FROM node:20-alpine AS migrator
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
+COPY package.json ./
+COPY apps/web/package.json ./apps/web/
+COPY apps/web/drizzle.config.ts ./apps/web/
+COPY apps/web/drizzle/schema.ts ./apps/web/drizzle/
+COPY apps/web/drizzle/migrations ./apps/web/drizzle/migrations
+WORKDIR /app/apps/web
+
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
