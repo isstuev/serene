@@ -20,7 +20,7 @@ export default async function HomePage() {
           Your journal is empty. Write your first entry to get started.
         </p>
         <Button asChild>
-          <Link href="/journal/new">New entry</Link>
+          <Link href="/journal">New entry</Link>
         </Button>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { BookOpen, BarChart3 } from "lucide-react";
 import { SignOutButton } from "@/components/layout/SignOutButton";
 
 const navLinks = [
-  { href: "/home", label: "Journal", icon: BookOpen },
+  { href: "/journal", label: "Journal", icon: BookOpen },
   { href: "/insights", label: "Insights", icon: BarChart3 },
 ];
 

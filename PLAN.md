@@ -21,19 +21,19 @@
 - [x] Authenticated shell layout — nav/sidebar, user avatar, sign-out
 
 ## Phase 3 — Journal CRUD
-- [ ] `GET /api/entries` — list with date grouping (today / yesterday / last week / older)
-- [ ] `POST /api/entries` — create entry
-- [ ] `GET /api/entries/[id]` — fetch single (ownership enforced)
-- [ ] `PATCH /api/entries/[id]` — update
-- [ ] `DELETE /api/entries/[id]` — delete
-- [ ] `MoodSelector` component (icons/cards, 7 moods, color-coded)
-- [ ] `TagsSelector` component (multi-select chips)
-- [ ] Note textarea with 50-char minimum counter
-- [ ] Entry editor — save flow with validation
-- [ ] `EntryTimeline` — grouped feed, newest first
-- [ ] `EntryCard` — mood badge, tags, excerpt, expand/collapse
-- [ ] Inline edit flow (editor pre-filled from card)
-- [ ] Delete confirmation modal
+- [x] `GET /api/entries` — list with date grouping (today / yesterday / last week / older)
+- [x] `POST /api/entries` — create entry
+- [x] `GET /api/entries/[id]` — fetch single (ownership enforced)
+- [x] `PATCH /api/entries/[id]` — update
+- [x] `DELETE /api/entries/[id]` — delete
+- [x] `MoodSelector` component (icons/cards, 7 moods, color-coded)
+- [x] `TagsSelector` component (multi-select chips)
+- [x] Note textarea with 50-char minimum counter
+- [x] Entry editor — save flow with validation
+- [x] `EntryTimeline` — grouped feed, newest first
+- [x] `EntryCard` — mood badge, tags, excerpt, expand/collapse
+- [x] Inline edit flow (editor pre-filled from card)
+- [x] Delete confirmation modal
 
 ## Phase 4 — AI Vibe Check
 - [ ] `POST /api/vibe` — streaming endpoint (Vercel AI SDK `streamText` + Claude Haiku)

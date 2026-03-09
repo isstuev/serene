@@ -247,9 +247,9 @@ Migrations run automatically on container start via a `prestart` script: `drizzl
 # Database
 DATABASE_URL=postgresql://serene:serene@localhost:5432/serene
 
-# NextAuth
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=replace-with-a-random-32-char-string
+# NextAuth v5
+AUTH_SECRET=replace-with-a-random-32-char-string  # openssl rand -base64 32
+AUTH_URL=http://localhost:3000
 
 # OAuth (optional)
 GOOGLE_CLIENT_ID=

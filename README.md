@@ -19,10 +19,9 @@ cp .env.example .env.local
 # Edit .env.local with your values
 
 # Start Postgres (via Docker)
-docker-compose up db -d
+docker compose up db -d
 
-# Generate & run migrations
-npm run db:generate
+# Run migrations
 npm run db:migrate
 
 # Start dev server
@@ -40,7 +39,7 @@ npm run db:studio
 ## Docker (Production)
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 App runs at http://localhost:3000
