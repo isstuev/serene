@@ -2,6 +2,8 @@
 
 A mood-tracking journaling app with AI-powered vibe checks. Write daily entries, track mood patterns over time, and get a compassionate AI reflection after each entry.
 
+Demo: https://serene-ten-lyart.vercel.app/insights
+
 ## Features
 
 - **Journal** — create, edit, and delete entries with mood + activity tags
