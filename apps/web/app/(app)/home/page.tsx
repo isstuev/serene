@@ -9,10 +9,13 @@ import type { Mood } from "@/lib/types";
 
 function formatRelativeDate(date: Date): string {
   const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffDays = Math.floor(diffMs / 86_400_000);
-  if (diffDays === 0) return "Today";
-  if (diffDays === 1) return "Yesterday";
+  const todayStr = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+  const dateStr = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  if (dateStr === todayStr) return "Today";
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  const yesterdayStr = `${yesterday.getFullYear()}-${yesterday.getMonth()}-${yesterday.getDate()}`;
+  if (dateStr === yesterdayStr) return "Yesterday";
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
