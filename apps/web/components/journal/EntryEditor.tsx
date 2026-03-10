@@ -40,7 +40,7 @@ export function EntryEditor({ editingEntry, onSave, onCancelEdit }: EntryEditorP
   }, [editingEntry])
 
   const isEditing = !!editingEntry
-  const canSave = mood !== null && note.length >= MIN_NOTE_LENGTH
+  const canSave = mood !== null && note.trim().length > 0
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -63,8 +63,10 @@ export function EntryEditor({ editingEntry, onSave, onCancelEdit }: EntryEditorP
       }
       const entry: Entry = await res.json()
       onSave(entry)
-      if (!isEditing) {
+      if ((entry.note ?? "").trim().length >= MIN_NOTE_LENGTH) {
         setSavedEntry(entry)
+      }
+      if (!isEditing) {
         setMood(null)
         setTags([])
         setNote("")

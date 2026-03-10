@@ -5,6 +5,7 @@ import { MoodBadge } from "@/components/mood/MoodBadge";
 import { Button } from "@/components/ui/button";
 import { Flame, PenLine, BarChart2 } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import type { Mood } from "@/lib/types";
 
 function formatRelativeDate(date: Date): string {
@@ -21,7 +22,10 @@ function formatRelativeDate(date: Date): string {
 
 export default async function HomePage() {
   const session = await auth();
-  const userId = session?.user?.id!;
+  const userId = session?.user?.id;
+  if (!userId) {
+    redirect("/auth/signin");
+  }
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
 
   const [recent, streak] = await Promise.all([

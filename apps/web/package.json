@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node ./scripts/sync-root-env.mjs",
     "dev": "next dev",
+    "prebuild": "node ./scripts/sync-root-env.mjs",
     "build": "next build",
+    "prestart": "node ./scripts/sync-root-env.mjs",
     "start": "next start",
     "lint": "next lint",
+    "predb:generate": "node ./scripts/sync-root-env.mjs",
     "db:generate": "drizzle-kit generate",
+    "predb:migrate": "node ./scripts/sync-root-env.mjs",
     "db:migrate": "drizzle-kit migrate",
+    "predb:studio": "node ./scripts/sync-root-env.mjs",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {

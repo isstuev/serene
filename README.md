@@ -24,8 +24,8 @@ A mood-tracking journaling app with AI-powered vibe checks. Write daily entries,
 # 1. Install dependencies
 npm install
 
-# 2. Copy and fill in environment variables
-cp .env.example .env.local
+# 2. Copy and fill in environment variables (single source of truth)
+cp .env.example .env
 # Required: AUTH_SECRET, ANTHROPIC_API_KEY
 # Optional: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
 
@@ -40,6 +40,8 @@ npm run dev
 ```
 
 App runs at http://localhost:3000
+
+`apps/web/.env` and `apps/web/.env.local` are auto-generated from root `.env` before app/database scripts run.
 
 ### Useful commands
 

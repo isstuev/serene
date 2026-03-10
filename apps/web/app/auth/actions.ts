@@ -18,5 +18,8 @@ export async function credentialsSignIn(
 }
 
 export async function googleSignIn(): Promise<void> {
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    throw new Error("Google sign-in is not configured.");
+  }
   await signIn("google", { redirectTo: "/home" });
 }

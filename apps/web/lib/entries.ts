@@ -38,7 +38,7 @@ export async function getEntryById(id: string, userId: string) {
 export async function updateEntry(
   id: string,
   userId: string,
-  data: { mood?: Mood; tags?: Tag[]; note?: string; vibeCheck?: string }
+  data: { mood?: Mood; tags?: Tag[]; note?: string; vibeCheck?: string | null }
 ) {
   const [entry] = await db
     .update(entries)

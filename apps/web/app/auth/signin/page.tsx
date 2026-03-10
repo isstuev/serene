@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,6 +20,7 @@ type FormData = z.infer<typeof schema>;
 
 export default function SignInPage() {
   const [serverError, setServerError] = useState<string | null>(null);
+  const [googleEnabled, setGoogleEnabled] = useState(false);
 
   const {
     register,
@@ -34,6 +36,24 @@ export default function SignInPage() {
     if (error) setServerError(error);
     // If no error, server action threw a redirect — browser navigates automatically
   }
+
+  useEffect(() => {
+    let active = true;
+    async function loadProviders() {
+      try {
+        const res = await fetch("/api/auth/providers");
+        if (!res.ok) return;
+        const providers = (await res.json()) as Record<string, unknown>;
+        if (active) setGoogleEnabled(Boolean(providers.google));
+      } catch {
+        // If providers fail to load, keep OAuth hidden.
+      }
+    }
+    loadProviders();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-warm-100 px-4">
@@ -54,22 +74,26 @@ export default function SignInPage() {
           </p>
         </div>
 
-        {/* Google */}
-        <form action={googleSignIn}>
-          <Button type="submit" variant="outline" className="w-full">
-            <GoogleIcon />
-            Continue with Google
-          </Button>
-        </form>
+        {googleEnabled && (
+          <>
+            {/* Google */}
+            <form action={googleSignIn}>
+              <Button type="submit" variant="outline" className="w-full">
+                <GoogleIcon />
+                Continue with Google
+              </Button>
+            </form>
 
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-muted-foreground">or</span>
-          </div>
-        </div>
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-muted-foreground">or</span>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Credentials form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

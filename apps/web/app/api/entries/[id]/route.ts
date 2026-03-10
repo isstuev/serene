@@ -26,7 +26,7 @@ const updateEntrySchema = z.object({
   mood: z.enum(MOODS).optional(),
   tags: z.array(z.enum(TAGS)).optional(),
   note: z.string().min(1).optional(),
-  vibeCheck: z.string().optional(),
+  vibeCheck: z.string().nullable().optional(),
 })
 
 export async function GET(
@@ -63,7 +63,16 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid input" }, { status: 400 })
   }
 
-  const entry = await updateEntry(id, session.user.id, parsed.data)
+  const updates = { ...parsed.data }
+  const editedCoreFields =
+    Object.hasOwn(updates, "mood") ||
+    Object.hasOwn(updates, "tags") ||
+    Object.hasOwn(updates, "note")
+  if (editedCoreFields && !Object.hasOwn(updates, "vibeCheck")) {
+    updates.vibeCheck = null
+  }
+
+  const entry = await updateEntry(id, session.user.id, updates)
   if (!entry) {
     return NextResponse.json({ error: "Not found" }, { status: 404 })
   }
