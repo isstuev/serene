@@ -1,6 +1,6 @@
 import { db } from "@/lib/db"
 import { entries } from "@/drizzle/schema"
-import { eq, and, gte, lte, sql } from "drizzle-orm"
+import { eq, and, gte, lte, isNotNull, sql } from "drizzle-orm"
 import type { Mood } from "@/lib/types"
 
 export async function getMoodCounts(
@@ -33,17 +33,30 @@ export async function getTagFrequency(
   from: Date,
   to: Date
 ): Promise<{ tag: string; count: number }[]> {
-  const rows = await db.execute(sql`
-    SELECT unnest(tags) AS tag, CAST(COUNT(*) AS int) AS count
-    FROM entries
-    WHERE "userId" = ${userId}
-      AND "createdAt" >= ${from.toISOString()}
-      AND "createdAt" <= ${to.toISOString()}
-      AND tags IS NOT NULL
-    GROUP BY tag
-    ORDER BY count DESC
-  `)
-  return rows as unknown as { tag: string; count: number }[]
+  const rows = await db
+    .select({ tags: entries.tags })
+    .from(entries)
+    .where(
+      and(
+        eq(entries.userId, userId),
+        gte(entries.createdAt, from),
+        lte(entries.createdAt, to),
+        isNotNull(entries.tags)
+      )
+    )
+
+  const counts = new Map<string, number>()
+  for (const row of rows) {
+    for (const tag of row.tags ?? []) {
+      const normalized = tag.trim()
+      if (!normalized) continue
+      counts.set(normalized, (counts.get(normalized) ?? 0) + 1)
+    }
+  }
+
+  return Array.from(counts.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count)
 }
 
 export async function getStreak(userId: string): Promise<number> {
