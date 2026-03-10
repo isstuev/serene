@@ -70,6 +70,45 @@ This starts Postgres, runs migrations automatically, then starts the web server.
 
 ---
 
+## Deployment
+
+### Vercel (Demo / Quickest)
+
+1. Create a managed Postgres database (Neon, Supabase, Railway, etc.) and copy `DATABASE_URL`.
+2. Import this repository in Vercel.
+3. Set environment variables in Vercel:
+   - `DATABASE_URL`
+   - `AUTH_SECRET` (generate via `openssl rand -base64 32`)
+   - `AUTH_URL` (your production app URL)
+   - `ANTHROPIC_API_KEY`
+   - Optional: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+4. Run migrations against your production database:
+
+```bash
+npm run db:migrate
+```
+
+5. Deploy.
+
+> Build scripts support platforms that inject environment variables directly (no root `.env` file required).
+
+### Self-Hosting (Docker)
+
+Use the existing compose stack for a one-command deploy:
+
+```bash
+# Set required secrets in shell or in a .env file
+export AUTH_SECRET="$(openssl rand -base64 32)"
+export AUTH_URL="https://your-domain.example"
+export ANTHROPIC_API_KEY="sk-ant-..."
+
+docker compose up --build -d
+```
+
+This starts Postgres, runs migrations, and serves the app on port `3000`.
+
+---
+
 ## Environment Variables
 
 | Variable | Required | Description |
