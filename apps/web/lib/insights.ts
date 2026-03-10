@@ -37,8 +37,8 @@ export async function getTagFrequency(
     SELECT unnest(tags) AS tag, CAST(COUNT(*) AS int) AS count
     FROM entries
     WHERE "userId" = ${userId}
-      AND "createdAt" >= ${from}
-      AND "createdAt" <= ${to}
+      AND "createdAt" >= ${from.toISOString()}
+      AND "createdAt" <= ${to.toISOString()}
       AND tags IS NOT NULL
     GROUP BY tag
     ORDER BY count DESC
@@ -64,9 +64,12 @@ export async function getStreak(userId: string): Promise<number> {
 
   const today = new Date()
   today.setUTCHours(0, 0, 0, 0)
+  const yesterday = today.getTime() - 86_400_000
 
+  // Allow streak to start from today or yesterday (so a streak isn't broken
+  // just because the user hasn't logged yet today)
   let streak = 0
-  let expected = today.getTime()
+  let expected = dates[0] === today.getTime() ? today.getTime() : yesterday
 
   for (const dayMs of dates) {
     if (dayMs === expected) {

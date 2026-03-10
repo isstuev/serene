@@ -1,13 +1,9 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, BarChart3 } from "lucide-react";
+import { SidebarNav } from "@/components/layout/SidebarNav";
+import { MobileHeader } from "@/components/layout/MobileHeader";
 import { SignOutButton } from "@/components/layout/SignOutButton";
-
-const navLinks = [
-  { href: "/journal", label: "Journal", icon: BookOpen },
-  { href: "/insights", label: "Insights", icon: BarChart3 },
-];
 
 export default async function AppLayout({
   children,
@@ -32,8 +28,8 @@ export default async function AppLayout({
 
   return (
     <div className="flex min-h-screen bg-warm-50">
-      {/* Sidebar */}
-      <aside className="flex w-56 flex-col border-r border-border bg-white px-4 py-6">
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex w-56 flex-col border-r border-border bg-white px-4 py-6 sticky top-0 h-screen">
         {/* Logo */}
         <Link
           href="/home"
@@ -42,19 +38,7 @@ export default async function AppLayout({
           Serene
         </Link>
 
-        {/* Nav links */}
-        <nav className="flex flex-1 flex-col gap-1">
-          {navLinks.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-indigo-50 hover:text-indigo-700"
-            >
-              <Icon className="h-4 w-4" />
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <SidebarNav />
 
         {/* User + sign-out */}
         <div className="space-y-2 border-t border-border pt-4">
@@ -88,8 +72,14 @@ export default async function AppLayout({
         </div>
       </aside>
 
-      {/* Main content */}
-      <main className="flex-1 overflow-y-auto">{children}</main>
+      {/* Content column */}
+      <div className="flex flex-1 flex-col min-h-screen overflow-hidden">
+        {/* Mobile top bar */}
+        <MobileHeader initials={initials} avatarUrl={user?.image} />
+
+        {/* Main content */}
+        <main className="flex-1 overflow-y-auto">{children}</main>
+      </div>
     </div>
   );
 }

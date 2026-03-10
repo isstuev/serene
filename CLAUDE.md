@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## MCP Servers
+
+- **playwright** — browser automation for E2E testing (`.mcp.json` at repo root, `npx @playwright/mcp@latest`)
+
 ## Commands
 
 All commands run from the repo root unless noted.

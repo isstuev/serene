@@ -52,9 +52,9 @@
 - [x] Streak display
 
 ## Phase 6 — Polish & Ship
-- [ ] Mobile-first responsive audit
-- [ ] Loading skeletons for timeline and vibe check
-- [ ] Error boundaries and user-facing error states
-- [ ] Empty states (no entries yet, no insights data)
-- [ ] `README.md` — local setup, Docker setup, architecture overview
-- [ ] Docker smoke test (`docker-compose up` end-to-end)
+- [x] Mobile-first responsive audit
+- [x] Loading skeletons for timeline and vibe check
+- [x] Error boundaries and user-facing error states
+- [x] Empty states (no entries yet, no insights data)
+- [x] `README.md` — local setup, Docker setup, architecture overview
+- [x] Docker smoke test (`docker-compose up` end-to-end)
